@@ -32,3 +32,15 @@ def  my_listings(request):
     my_listings = Listings.objects.order_by('-list_date')
     context = {"my_listings":my_listings}
     return render(request, 'listings/my_listings.html', context)
+
+def edit_listing(request, edit_id):
+    listing = Listings.objects.get(id=edit_id)
+    if request.method != "POST":
+        form = ListingForm(instance=listing)
+    else:
+        form = ListingForm(request.POST, request.FILES, instance=listing)
+        if form.is_valid():
+            form.save()
+            return redirect('listings:all_listings')
+    context = {'listing':listing,'form':form}
+    return render(request, 'listings/edit_listing.html',context)

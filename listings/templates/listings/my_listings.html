@@ -25,8 +25,14 @@
               >View</a
             >
           </td>
-          <td></td>
-          <td><a class="btn" href="">Edit</a></td>
+          <td>
+            <a
+              class="btn"
+              href="{% url 'listings:edit_listing' my_listing.id %}"
+              >Edit</a
+            >
+          </td>
+
           <td><a class="btn" href="">Delete</a></td>
         </tr>
 
