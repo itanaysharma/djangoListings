@@ -22,3 +22,8 @@ def new_listing(request):
       
     context = {'form': form}
     return render(request, 'listings/new_listing.html', context)
+
+def detail(request,detail_id):
+    detail = Listings.objects.get(id=detail_id)
+    context = {'detail':detail}
+    return render(request, 'listings/detail.html', context)
