@@ -33,7 +33,13 @@
             >
           </td>
 
-          <td><a class="btn" href="">Delete</a></td>
+          <td>
+            <a
+              class="btn"
+              href="{% url 'listings:delete_listing' my_listing.id %}"
+              >Delete</a
+            >
+          </td>
         </tr>
 
         {% endfor %}
