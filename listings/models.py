@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.timezone import now
 from datetime import datetime
+from django.contrib.auth.models import User
 
 
 class Listings(models.Model):
@@ -19,7 +20,7 @@ class Listings(models.Model):
         MODELS = "Models"
         OTHER = "Other"
 
-  
+    user = models.ForeignKey(User, null=True, on_delete=models.CASCADE)
     title = models.CharField(max_length=100)
     condition = models.CharField(
         max_length=50, choices=ConditionType.choices, default=ConditionType.USED)
