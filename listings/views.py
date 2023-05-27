@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from .models import Listings
 from .forms import ListingForm
+from .filters import ListingFilter
 
 
 def index(request):
@@ -8,7 +9,9 @@ def index(request):
 
 def all_listings(request):
     all_listings = Listings.objects.order_by('-list_date')
-    context = {'all_listings': all_listings}
+    my_Filter = ListingFilter(request.GET, queryset=all_listings)
+    all_listings = my_Filter.qs
+    context = {'all_listings': all_listings, 'my_Filter': my_Filter}
     return render(request, 'listings/all_listings.html', context)
 
 def new_listing(request):
